@@ -3,22 +3,21 @@ import re
 import html
 import os
 
-# load pickled data
+# Load pickled threads
 if not os.path.exists('pickles/threads.pkl'):
     print('Please run retrieve_threads.py to generate pickled file. Exiting...')
     exit(0)
-    
 with open('pickles/threads.pkl', 'rb') as f:
     threads = pickle.load(f)
 
-# Extract the body of every post.
+# Extract the body of every post
 posts = []
 for thread_key in list(threads.keys()):
     thread = threads[thread_key]
     for post in thread:
         posts.append(post['Body'])
 
-# Sanitize the content of each post.
+# Sanitize the content of each post
 for i in range(len(posts)):
     posts[i] = re.sub(r'<pre>(.|\n)*</pre>', '', posts[i])  # remove code snippets
     posts[i] = re.sub(r'<(a|/a).*?>', '', posts[i])  # remove links (but not text that is hyperlinked)
@@ -27,9 +26,8 @@ for i in range(len(posts)):
     posts[i] = posts[i].strip()  # strip any extra whitespace
     posts[i] = html.unescape(posts[i])  # unescape HTML entities (e.g. &amp;)
 
-# Pickle data.
+# Pickle data
 if not os.path.exists('pickles/'):
     os.makedirs('pickles/')
-    
 with open('pickles/posts.pkl', 'wb') as f:
     pickle.dump(posts, f)

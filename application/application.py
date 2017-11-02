@@ -229,7 +229,7 @@ def most_similar_to_q(q1, k=5, need_qs=False):
     if not os.path.exists('pickles/threads.pkl'):
         print('Please run retrieve_threads.py to generate pickled file. Exiting...')
         exit(0)
-        
+
     all_existing_questions_list = get_all_existing_questions("pickles/threads.pkl")
     similarity_scores = [(i, get_similarity(q1, qk)) for i, qk in enumerate(all_existing_questions_list)]
     similarity_scores = sorted(similarity_scores, key=lambda x: x[1], reverse=True)

@@ -23,18 +23,18 @@ question_posts = set()
 threads = {}
 num_of_threads = 0
 
-# Get threads from XML file.
+# Get threads from XML file
 for event, elem in ET.iterparse(filepath):
     if elem.tag == 'row':
         attr = elem.attrib
 
-        # Add question post if it has the needed tag & enough answers.
+        # Add question post if it has the needed tag & enough answers
         if attr['PostTypeId'] == '1' and attr['Tags'].find(tag) != -1 and int(attr['AnswerCount']) >= 1:
             threads[attr['Id']] = []
             threads[attr['Id']].append(attr)
             question_posts.add(attr['Id'])
             num_of_threads += 1
-        # Add answer post if corresponding question post has been added.
+        # Add answer post if corresponding question post has been added
         elif attr['PostTypeId'] == '2' and attr['ParentId'] in question_posts:
             threads[attr['ParentId']].append(attr)
 
@@ -45,16 +45,16 @@ for event, elem in ET.iterparse(filepath):
                 if len(posts) >= 2:
                     num_of_valid_threads += 1
 
-            # Stop searching once threshold is met.
+            # Stop searching once threshold is met
             if num_of_valid_threads >= threads_threshold:
                 break
 
-# Delete threads that are not valid.
+# Delete threads that are not valid
 for question_id, posts in list(threads.items()):
     if len(posts) < 2:
         del threads[question_id]
 
-# Pickle data.
+# Pickle data
 if not os.path.exists('pickles/'):
     os.makedirs('pickles/')
 with open('pickles/threads.pkl', 'wb') as f:
