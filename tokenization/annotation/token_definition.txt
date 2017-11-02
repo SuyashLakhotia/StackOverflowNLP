@@ -2,7 +2,7 @@ Token Definition:
 =======================
 
 - Each non-alphanumeric character is a separate token, except in the cases listed below where they are considered part of a larger token:
-    - '...', '->'
+    - Ellipsis ('...'), Arrow ('->')
     - Clitics ("'ll", "'ve", etc.)
     - Text Emojis (';)', ':P', etc.)
     - Programming Languages ('C#', 'C++', '.NET', etc.)
@@ -11,7 +11,7 @@ Token Definition:
     - URLs ('java.net', 'http://asm.objectweb.org/', etc.)
     - Package Names ('com.foo.bar.class', etc.)
     - File Paths ('com/foo/Bar.java', etc.)
-- A code block is a single separate token (from '<code>' to '</code>').
+- An inline code block is a single separate token (from '<code>' to '</code>').
 - A numerical value is a separate token.
 - Clitics are separate tokens from the adjoining word.
-- An English word (defined by a chain of strictly alphabetical characters) is a separate token.
+- A 'word' (defined by a chain of strictly alphabetical characters) is a separate token.
