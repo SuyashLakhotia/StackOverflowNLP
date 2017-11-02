@@ -31,6 +31,8 @@ You will also need to download a few NLTK pickled models and corpora (`punkt`, `
 
 ## Running StackOverflowNLP
 
+All codes in this project must be run from the root of this repository.
+
 ### Dataset Collection
 
 The first step is to download the Stack Overflow data dump (i.e. `stackoverflow.com-Posts.7z`) from [Internet Archive](https://archive.org/details/stackexchange) and uncompress the file. Set the `filepath` variable in `dataset_collection/retrieve_threads.py` to point to the uncompressed `Posts.xml` and run the following:
@@ -119,4 +121,4 @@ Depending on the underlying processor, finding duplicate questions may take anyw
 
 ****
 
-***Disclaimer:*** This repo is no longer maintained and was submitted as part of the coursework assignment for CZ 4045 Natural Language Processing at NTU in AY 17/18 Semester 1.
+***Disclaimer:*** This repo is no longer maintained and was submitted as part of the course project for CZ 4045 Natural Language Processing at NTU in AY 17/18 Semester 1.
